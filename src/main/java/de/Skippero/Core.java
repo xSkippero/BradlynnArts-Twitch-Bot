@@ -3,6 +3,7 @@ package de.Skippero;
 import com.github.philippheuer.credentialmanager.domain.OAuth2Credential;
 import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
+import de.Skippero.configuration.ConfigurationManager;
 
 /*
 
@@ -15,24 +16,34 @@ on 27.02.2023 , 23:45
 
 public class Core {
 
+    private static Core core;
+    private final ConfigurationManager configurationManager;
+
+    {
+        core = this;
+        configurationManager = new ConfigurationManager();
+    }
+
     public static void main(String[] args)  {
 
-        if (args.length < 1) {
-            System.err.println("Missing Token on Parameter 1 (Index 0)");
-            System.exit(1);
-        }
+        //OAuth2Credential credential = new OAuth2Credential("twitch", token);
 
-        String token = args[0];
-        OAuth2Credential credential = new OAuth2Credential("twitch", token);
-
-        TwitchClient twitchClient = TwitchClientBuilder.builder()
+        /*TwitchClient twitchClient = TwitchClientBuilder.builder()
                 .withEnableChat(true)
                 .withEnableHelix(true)
                 .withChatAccount(credential)
                 .build();
 
         twitchClient.getChat().sendMessage("xskippero","Hello World");
+        */
+    }
 
+    public static Core getInstance() {
+        return core;
+    }
+
+    public ConfigurationManager getConfigurationManager() {
+        return this.configurationManager;
     }
 
 }
