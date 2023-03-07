@@ -4,6 +4,7 @@ import com.github.philippheuer.credentialmanager.domain.OAuth2Credential;
 import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import de.Skippero.configuration.ConfigurationManager;
+import de.Skippero.data.QueryHandler;
 
 /*
 
@@ -16,15 +17,12 @@ on 27.02.2023 , 23:45
 
 public class Core {
 
-    private static Core core;
-    private final ConfigurationManager configurationManager;
-
-    {
-        core = this;
-        configurationManager = new ConfigurationManager();
-    }
+    protected static ConfigurationManager configurationManager;
+    protected static QueryHandler queryHandler;
 
     public static void main(String[] args)  {
+        configurationManager = new ConfigurationManager();
+        //queryHandler = new QueryHandler();
 
         //OAuth2Credential credential = new OAuth2Credential("twitch", token);
 
@@ -38,12 +36,12 @@ public class Core {
         */
     }
 
-    public static Core getInstance() {
-        return core;
+    public static ConfigurationManager getConfigurationManager() {
+        return configurationManager;
     }
 
-    public ConfigurationManager getConfigurationManager() {
-        return this.configurationManager;
+    public static QueryHandler getQueryHandler() {
+        return queryHandler;
     }
 
 }

@@ -22,7 +22,7 @@ public class QueryHandler {
     private final DataBaseCredentials credentials;
 
     public QueryHandler() {
-        ConfigurationManager configurationManager = Core.getInstance().getConfigurationManager();
+        ConfigurationManager configurationManager = Core.getConfigurationManager();
         this.credentials = configurationManager.GetDataBaseCredentials();
         Connection con = getConnection();
 
